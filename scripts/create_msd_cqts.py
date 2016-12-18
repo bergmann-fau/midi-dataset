@@ -33,7 +33,7 @@ def process_one_file(mp3_filename, skip=True):
         # Load audio and compute CQT
         audio_data, _ = librosa.load(
             mp3_filename, sr=feature_extraction.AUDIO_FS)
-        cqt = feature_extraction.audio_cqt(audio_data)
+        cqt = feature_extraction.post_process_cqt(feature_extraction.audio_cqt(audio_data))
         # Create subdirectories if they don't exist
         if not os.path.exists(os.path.split(output_filename)[0]):
             os.makedirs(os.path.split(output_filename)[0])

@@ -36,7 +36,7 @@ def process_one_file(diagnostics_file, output_filename,
         pm_unaligned = pretty_midi.PrettyMIDI(
             str(diagnostics['midi_filename']))
         # Synthesize MIDI data and extract CQT
-        midi_gram_unaligned = feature_extraction.midi_cqt(pm_unaligned)
+        midi_gram_unaligned = feature_extraction.post_process_cqt(feature_extraction.midi_cqt(pm_unaligned))
         # Get audio CQT
         audio_features = deepdish.io.load(
             str(diagnostics['audio_features_filename']))
@@ -50,7 +50,7 @@ def process_one_file(diagnostics_file, output_filename,
         pm_aligned = pretty_midi.PrettyMIDI(
             str(diagnostics['output_midi_filename']))
         # Synthesize MIDI data and extract CQT
-        midi_gram_aligned = feature_extraction.midi_cqt(pm_aligned)
+        midi_gram_aligned = feature_extraction.post_process_cqt(feature_extraction.midi_cqt(pm_aligned))
         midi_frame_times = feature_extraction.frame_times(midi_gram_aligned)
         # Get indices which fall within the range of correct alignment
         start_time = min(

@@ -81,7 +81,7 @@ def midi_cqt(midi_object):
         midi_audio, sr=MIDI_FS, hop_length=MIDI_HOP,
         fmin=librosa.midi_to_hz(NOTE_START), n_bins=N_NOTES)
     # L2-normalize and log-magnitute it
-    return post_process_cqt(midi_gram)
+    return midi_gram
 
 
 def audio_cqt(audio_data, fs=AUDIO_FS):
@@ -107,7 +107,7 @@ def audio_cqt(audio_data, fs=AUDIO_FS):
         audio_data, sr=fs, hop_length=AUDIO_HOP,
         fmin=librosa.midi_to_hz(NOTE_START), n_bins=N_NOTES)
     # L2-normalize and log-magnitute it
-    return post_process_cqt(audio_gram)
+    return audio_gram
 
 
 def post_process_cqt(gram):
